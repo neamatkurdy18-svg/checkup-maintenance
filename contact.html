@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — Check Up Maintenance</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: #f8f9fc; color: #222; }
+        .container { width: 90%; max-width: 1300px; margin: auto; }
+
+        /* ===== HEADER ===== */
+        header { background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,.08); }
+        nav { height: 95px; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 85px; display: block; }
+        nav ul { display: flex; list-style: none; gap: 40px; }
+        nav ul li a { text-decoration: none; color: #222; font-weight: 600; transition: .3s; position: relative; padding-bottom: 4px; }
+        nav ul li a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #ff2d2d; transition: .3s; }
+        nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
+        nav ul li a:hover, nav ul li a.active { color: #ff2d2d; }
+        .call-btn { text-decoration: none; color: #fff; background: #ff2d2d; padding: 16px 30px; border-radius: 10px; font-weight: 600; transition: .3s; }
+        .call-btn:hover { background: #003dff; }
+        .call-btn i { margin-right: 10px; }
+        .menu-toggle { display: none; background: none; border: none; font-size: 28px; color: #222; cursor: pointer; }
+
+        /* ===== BUTTONS ===== */
+        .btn-red { background: #ff2d2d; color: #fff; text-decoration: none; padding: 18px 35px; border-radius: 10px; font-weight: 600; transition: .3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-red:hover { background: #003dff; }
+        .btn-white { border: 2px solid #003dff; color: #003dff; text-decoration: none; padding: 18px 35px; border-radius: 10px; font-weight: 600; transition: .3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-white:hover { background: #003dff; color: #fff; }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, #082f78 0%, #003dff 100%);
+            padding: 90px 0;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before { content: ''; position: absolute; top: -60%; right: -20%; width: 600px; height: 600px; background: rgba(255,45,45,0.07); border-radius: 50%; }
+        .page-hero::after { content: ''; position: absolute; bottom: -40%; left: -10%; width: 400px; height: 400px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+        .page-hero-content { position: relative; z-index: 1; }
+        .page-hero h1 { font-size: 56px; font-weight: 800; margin-bottom: 15px; }
+        .page-hero p { font-size: 19px; color: rgba(255,255,255,0.85); margin-bottom: 25px; }
+        .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 14px; }
+        .breadcrumb a { color: #ff2d2d; text-decoration: none; font-weight: 600; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep { color: rgba(255,255,255,0.5); font-size: 11px; }
+        .breadcrumb .current { color: rgba(255,255,255,0.75); }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 46px; color: #111; margin-bottom: 15px; font-weight: 700; }
+        .section-title p { font-size: 18px; color: #666; max-width: 600px; margin: auto; line-height: 32px; }
+
+        /* ===== QUICK CONTACT CARDS ===== */
+        .quick-contact { padding: 80px 0 0; background: #f8f9fc; }
+        .quick-cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        .quick-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,.07);
+            transition: .35s;
+            border-bottom: 4px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .quick-card:hover { transform: translateY(-10px); border-bottom-color: #ff2d2d; box-shadow: 0 20px 45px rgba(0,0,0,.12); }
+        .quick-card:nth-child(2):hover { border-bottom-color: #25d366; }
+        .quick-card:nth-child(3):hover { border-bottom-color: #003dff; }
+        .quick-card:nth-child(5):hover { border-bottom-color: #e1306c; }
+        .quick-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+        }
+        .quick-icon.red { background: #fff0f0; }
+        .quick-icon.green { background: #f0fff4; }
+        .quick-icon.blue { background: #f0f3ff; }
+        .quick-icon.darkblue { background: #eef1ff; }
+        .quick-icon.purple { background: #fff0f7; }
+        .quick-icon i { font-size: 32px; }
+        .quick-icon.red i { color: #ff2d2d; }
+        .quick-icon.green i { color: #25d366; }
+        .quick-icon.blue i { color: #003dff; }
+        .quick-icon.darkblue i { color: #082f78; }
+        .quick-icon.purple i { color: #e1306c; }
+        .quick-card h4 { font-size: 13px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .quick-card p { font-size: 15px; font-weight: 600; color: #222; line-height: 24px; }
+        .quick-card small { display: block; font-size: 13px; color: #888; margin-top: 5px; }
+
+        /* ===== MAIN CONTACT SECTION ===== */
+        .contact-main { padding: 80px 0; background: #f8f9fc; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info-box {
+            background: linear-gradient(135deg, #082f78, #003dff);
+            border-radius: 24px;
+            padding: 50px 40px;
+            color: white;
+            height: 100%;
+        }
+        .contact-info-box h3 { font-size: 30px; font-weight: 800; margin-bottom: 15px; }
+        .contact-info-box > p { font-size: 15px; color: rgba(255,255,255,.8); line-height: 28px; margin-bottom: 35px; }
+
+        .contact-detail-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+        .contact-detail-row:last-of-type { border-bottom: none; margin-bottom: 35px; }
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,.12);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .detail-icon i { font-size: 20px; color: #ff2d2d; }
+        .detail-text strong { display: block; font-size: 12px; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .detail-text a { color: #fff; text-decoration: none; font-size: 15px; font-weight: 600; transition: .3s; }
+        .detail-text a:hover { color: #ff2d2d; }
+        .detail-text span { color: #fff; font-size: 15px; font-weight: 600; }
+
+        .cta-group { display: flex; gap: 12px; flex-direction: column; }
+        .cta-btn-full {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: .3s;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-btn-full.call { background: #ff2d2d; color: #fff; }
+        .cta-btn-full.call:hover { background: #c70000; }
+        .cta-btn-full.whatsapp { background: #25d366; color: #fff; }
+        .cta-btn-full.whatsapp:hover { background: #1da851; }
+
+        /* Contact Form */
+        .contact-form-box {
+            background: #fff;
+            border-radius: 24px;
+            padding: 55px 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,.08);
+        }
+        .contact-form-box h3 { font-size: 30px; font-weight: 800; margin-bottom: 8px; color: #111; }
+        .contact-form-box > p { font-size: 15px; color: #888; margin-bottom: 30px; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 13px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: .5px; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 15px;
+            color: #222;
+            background: #fafafa;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #003dff;
+            box-shadow: 0 0 0 3px rgba(0,61,255,.08);
+            background: #fff;
+        }
+        .form-group textarea { resize: vertical; min-height: 130px; }
+        .form-full { margin-bottom: 18px; }
+        .submit-btn {
+            background: #ff2d2d;
+            color: #fff;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: .3s;
+            letter-spacing: .5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .submit-btn:hover { background: #003dff; }
+
+        /* ===== MAP ===== */
+        .map-section { padding: 0 0 80px; background: #f8f9fc; }
+        .map-wrapper { border-radius: 24px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.1); }
+        .map-wrapper iframe { width: 100%; height: 450px; border: none; display: block; }
+
+        /* ===== FAQ ===== */
+        .faq-section { padding: 100px 0; background: #fff; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 60px; }
+        .faq-item {
+            background: #f8f9fc;
+            border-radius: 16px;
+            padding: 30px 30px;
+            border-left: 4px solid #ff2d2d;
+            transition: .3s;
+        }
+        .faq-item:nth-child(even) { border-left-color: #003dff; }
+        .faq-item:hover { transform: translateX(6px); box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+        .faq-item h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .faq-item h4 i { color: #ff2d2d; font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+        .faq-item:nth-child(even) h4 i { color: #003dff; }
+        .faq-item p { font-size: 15px; color: #666; line-height: 28px; padding-left: 28px; }
+
+        /* ===== FOOTER ===== */
+        .footer { background: #082f78; color: white; padding: 70px 0 20px; }
+        .footer-container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        .footer-logo { width: 180px; margin-bottom: 20px; }
+        .footer-column p { color: #d9d9d9; line-height: 30px; margin-bottom: 12px; font-size: 15px; }
+        .footer-column h3 { margin-bottom: 22px; font-size: 22px; }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 14px; }
+        .footer-column ul li a { color: #d9d9d9; text-decoration: none; transition: .3s; font-size: 15px; }
+        .footer-column ul li a:hover { color: #ff2d2d; padding-left: 6px; }
+        .footer-column i { color: #ff2d2d; margin-right: 10px; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-icons a { width: 48px; height: 48px; background: rgba(255,255,255,.12); color: #fff; display: flex; justify-content: center; align-items: center; border-radius: 50%; text-decoration: none; font-size: 20px; transition: .3s; border: 1px solid rgba(255,255,255,.15); }
+        .social-icons a:hover { background: #ff2d2d; transform: translateY(-5px); border-color: #ff2d2d; }
+        .footer-bottom { margin-top: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,.1); padding-top: 22px; color: #aaa; font-size: 14px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            .quick-cards { grid-template-columns: repeat(3, 1fr); }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 992px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            nav ul { display: none; flex-direction: column; gap: 16px; position: absolute; top: 95px; left: 0; width: 100%; background: #fff; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,.08); }
+            nav ul.open { display: flex; }
+            .menu-toggle { display: block; }
+            nav { position: relative; }
+            .call-btn { display: none; }
+            .page-hero h1 { font-size: 36px; }
+            .page-hero p { font-size: 16px; }
+            .quick-cards { grid-template-columns: 1fr 1fr; }
+            .contact-form-box { padding: 35px 25px; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-logo { margin: 0 auto 20px; }
+            .social-icons { justify-content: center; }
+            .section-title h2 { font-size: 32px; }
+            .map-wrapper iframe { height: 300px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="Check Up Maintenance">
+                    </a>
+                </div>
+                <ul id="nav-menu">
+                    <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+                    <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                    <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+                    <li><a href="index.html#why-us" onclick="closeMenu()">Why Us</a></li>
+                    <li><a href="index.html#statistics" onclick="closeMenu()">Statistics</a></li>
+                    <li><a href="contact.html" class="active" onclick="closeMenu()">Contact</a></li>
+                </ul>
+                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars" id="menu-icon"></i>
+                </button>
+                <a href="tel:+96103537917" class="call-btn">
+                    <i class="fa-solid fa-phone"></i> +961 03 53 79 17
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <h1>Contact Us</h1>
+            <p>Call, WhatsApp, or send us a message — we respond fast</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                <span class="current">Contact</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK CONTACT CARDS -->
+    <section class="quick-contact">
+        <div class="container">
+            <div class="quick-cards">
+
+                <a href="tel:+96103537917" class="quick-card">
+                    <div class="quick-icon red"><i class="fa-solid fa-phone"></i></div>
+                    <h4>Phone</h4>
+                    <p>+961 03 53 79 17</p>
+                    <small>Tap to call directly</small>
+                </a>
+
+                <a href="https://wa.me/96103537917" class="quick-card" target="_blank">
+                    <div class="quick-icon green"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h4>WhatsApp</h4>
+                    <p>+961 03 53 79 17</p>
+                    <small>Message us now</small>
+                </a>
+
+                <div class="quick-card">
+                    <div class="quick-icon blue"><i class="fa-solid fa-location-dot"></i></div>
+                    <h4>Location</h4>
+                    <p>Beirut, Lebanon</p>
+                    <small>We come to you</small>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-icon darkblue"><i class="fa-solid fa-clock"></i></div>
+                    <h4>Availability</h4>
+                    <p>24 / 7</p>
+                    <small>Including weekends &amp; holidays</small>
+                </div>
+
+                <a href="https://www.instagram.com/hassanalkurdi1/" class="quick-card" target="_blank">
+                    <div class="quick-icon purple"><i class="fa-brands fa-instagram"></i></div>
+                    <h4>Instagram</h4>
+                    <p>@hassanalkurdi1</p>
+                    <small>Follow for updates</small>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTACT SECTION -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Left: Contact Info -->
+                <div class="contact-info-box">
+                    <h3>We're Ready When You Need Us</h3>
+                    <p>Call us, WhatsApp us, or fill out the form and we'll get back to you within the hour — every day of the week, including holidays.</p>
+
+                    <div class="contact-detail-row">
+                        <div class="detail-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="detail-text">
+                            <strong>Phone</strong>
+                            <a href="tel:+96103537917">+961 03 53 79 17</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail-row">
+                        <div class="detail-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="detail-text">
+                            <strong>WhatsApp</strong>
+                            <a href="https://wa.me/96103537917" target="_blank">+961 03 53 79 17</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail-row">
+                        <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="detail-text">
+                            <strong>Location</strong>
+                            <span>Beirut, Lebanon</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail-row">
+                        <div class="detail-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div class="detail-text">
+                            <strong>Hours</strong>
+                            <span>24/7 — Including Weekends &amp; Holidays</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail-row">
+                        <div class="detail-icon"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="detail-text">
+                            <strong>Instagram</strong>
+                            <a href="https://www.instagram.com/hassanalkurdi1/" target="_blank">@hassanalkurdi1</a>
+                        </div>
+                    </div>
+
+                    <div class="cta-group">
+                        <a href="tel:+96103537917" class="cta-btn-full call">
+                            <i class="fa-solid fa-phone"></i> Call +961 03 53 79 17
+                        </a>
+                        <a href="https://wa.me/96103537917" class="cta-btn-full whatsapp" target="_blank">
+                            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="contact-form-box">
+                    <h3>Send Us a Message</h3>
+                    <p>Fill out the form below and we'll get back to you within the hour.</p>
+
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" placeholder="Smith" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" placeholder="+961 xx xxx xxx" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Area / Location</label>
+                                <input type="text" placeholder="e.g. Hamra, Beirut">
+                            </div>
+                        </div>
+
+                        <div class="form-full">
+                            <div class="form-group">
+                                <label>Service Needed</label>
+                                <select>
+                                    <option value="">Select a service</option>
+                                    <option>AC Repair</option>
+                                    <option>AC Installation</option>
+                                    <option>Routine Maintenance</option>
+                                    <option>Annual Maintenance Contract</option>
+                                    <option>Emergency Call-Out</option>
+                                    <option>Commercial / Project Work</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-full">
+                            <div class="form-group">
+                                <label>AC Brand &amp; Model (if known)</label>
+                                <input type="text" placeholder="e.g. Daikin 18,000 BTU split unit">
+                            </div>
+                        </div>
+
+                        <div class="form-full">
+                            <div class="form-group">
+                                <label>Message / Details</label>
+                                <textarea placeholder="Describe the issue or what you need — e.g. not cooling, making noise, need installation..."></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fa-solid fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-wrapper">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53442.32774553296!2d35.45626!3d33.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f17215880a78f%3A0x729182bae99836b4!2sBeirut%2C%20Lebanon!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to the most common questions we receive.</p>
+            </div>
+            <div class="faq-grid">
+
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-circle-question"></i> How quickly do you respond?</h4>
+                    <p>We typically respond within the hour and aim to be on-site the same day. For emergencies, we respond immediately — any time of day or night.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-circle-question"></i> Do you work on all AC brands?</h4>
+                    <p>Yes — we service all major AC brands available in Lebanon, including Daikin, LG, Samsung, Mitsubishi, Carrier, Midea, Gree, Panasonic, and more.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-circle-question"></i> What areas do you cover?</h4>
+                    <p>We're based in Beirut and cover all of Greater Beirut and most areas across Lebanon. If you're unsure, just call us — we almost certainly cover your area.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-circle-question"></i> Do you give a quote before starting work?</h4>
+                    <p>Always. We inspect the unit, diagnose the problem, and give you a clear, honest quote before any work begins. No surprises on the bill.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-circle-question"></i> Do you offer a warranty on repairs?</h4>
+                    <p>Yes — all of our work comes with a workmanship guarantee. If the same issue comes back after our repair, we return and fix it at no extra charge.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-circle-question"></i> What are your payment methods?</h4>
+                    <p>We currently accept cash payment on the day of service. Contact us before the visit if you have any questions about payment.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-circle-question"></i> How often should I service my AC?</h4>
+                    <p>We recommend servicing every 3–6 months — ideally once before summer and once before winter. Regular maintenance prevents breakdowns and reduces electricity costs.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-circle-question"></i> Do you work on weekends and holidays?</h4>
+                    <p>Yes — we're available 24 hours a day, 7 days a week, including all public holidays. Your comfort doesn't take days off, and neither do we.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-column">
+                <img src="images/logo.png" class="footer-logo" alt="Check Up Maintenance">
+                <p>Check Up Maintenance provides professional AC installation, repair and maintenance services across Lebanon. Available 24/7 — including emergencies.</p>
+                <div class="social-icons">
+                    <a href="https://wa.me/96103537917" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/hassanalkurdi1/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="index.html#why-us">Why Choose Us</a></li>
+                    <li><a href="index.html#statistics">Statistics</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="services.html#repair">AC Repair</a></li>
+                    <li><a href="services.html#installation">AC Installation</a></li>
+                    <li><a href="services.html#maintenance">Maintenance</a></li>
+                    <li><a href="services.html#contracts">Annual Contracts</a></li>
+                    <li><a href="services.html#emergency">Emergency Service</a></li>
+                    <li><a href="services.html#commercial">Commercial Projects</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p><i class="fa-solid fa-phone"></i> +961 03 53 79 17</p>
+                <p><i class="fa-solid fa-location-dot"></i> Beirut, Lebanon</p>
+                <p><i class="fa-solid fa-clock"></i> Available 24/7</p>
+                <p><i class="fa-brands fa-instagram"></i> @hassanalkurdi1</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Check Up Maintenance. All Rights Reserved. &nbsp;|&nbsp; Beirut, Lebanon
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('open');
+            icon.className = menu.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+        function closeMenu() {
+            const menu = document.getElementById('nav-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.remove('open');
+            icon.className = 'fa-solid fa-bars';
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.submit-btn');
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent! We\'ll be in touch shortly.';
+            btn.style.background = '#28a745';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+                btn.style.background = '';
+                e.target.reset();
+            }, 4000);
+        }
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').style.boxShadow =
+                window.scrollY > 10 ? '0 5px 30px rgba(0,0,0,.15)' : '0 5px 20px rgba(0,0,0,.08)';
+        });
+    </script>
+
+</body>
+</html>
